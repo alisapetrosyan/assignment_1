@@ -2,7 +2,7 @@
 
 git pull origin main
 
-date > /data/class/cogs106/ajpetros/cogs106-alisa/verion
+date > /data/class/cogs106/ajpetros/cogs106-alisa/version
 
 git add .
 
