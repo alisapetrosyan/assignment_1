@@ -1,0 +1,38 @@
+import unittest
+import numpy as np
+import scipy 
+from scipy import stats
+from scipy.stats import norm
+import math
+import matplotlib.pyplot as plt
+
+
+
+class SignalDetection:
+    def __init__(self, hits, misses, falseAlarms, correctRejections):
+        self.hits = hits
+        self.misses = misses
+        self.falseAlarms = falseAlarms
+        self.correctRejections= correctRejections
+        self.H = (hits / (hits + misses))
+        self.FA = (falseAlarms / (falseAlarms + correctRejections))
+
+    def d_prime(self):
+        return scipy.stats.zscore(self.hits) - scipy.stats.zscore(self.falseAlarms)
+    
+                              
+                              
+class TestSignalDetection(unittest.TestCase):
+    def test_d_prime_zero(self):
+        sd   = SignalDetection(15, 5, 15, 5)
+        expected = 0
+        obtained = sd.d_prime()
+        # Compare calculated and expected d-prime
+        self.assertAlmostEqual(obtained, expected, places=6)
+
+
+        
+if __name__ == '__main__':
+    unittest.main(argv=['first-arg-is-ignored'], exit= False)
+    
+
