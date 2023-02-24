@@ -65,6 +65,25 @@ class SignalDetection:
 
     def __mul__ (self, other1):
         return SignalDetection(self.hits * other1, self.misses * other1, self.falseAlarms * other1, self.correctRejections * other1)
+    
+    
+#Adding roc plot 
+    def plot_roc(self):
+        x = []
+        y = []
+        #append to the list 
+        x.append(0)
+        y.append(0)        
+        x.append(self.FA())
+        y.append(self.H())       
+        x.append(1)
+        y.append(1)
+        plt.title("ROC Curve")
+        plt.xlabel("False Alarms")
+        plt.ylabel("Hits")
+        plt.plot(x, y,'o')
+        plt.plot(x,y,'-')
+        plt.show()
 
 
 # In[ ]:
