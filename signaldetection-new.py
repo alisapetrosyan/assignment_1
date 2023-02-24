@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[7]:
+# In[40]:
 
 
 #trying to make the class uncorruptible by implementing private methods 
@@ -84,6 +84,40 @@ class SignalDetection:
         plt.plot(x, y,'o')
         plt.plot(x,y,'-')
         plt.show()
+        
+    def plot_sdt(self, d_prime):
+     
+        x = np.linspace(-4, 4, 1000)
+    
+        
+        y_Noise = scipy.stats.norm.pdf(x, loc = 0, scale = 1)
+        y_Signal = scipy.stats.norm.pdf(x, loc = d_prime, scale = 1) 
+        c = d_prime/2 
+
+        
+        Noisetop_y = np.max(y_Noise)
+        Noisestop_x = x[np.argmax(y_Noise)]
+        Signaltop_y = np.max(y_Signal)
+        Signaltop_x = x[np.argmax(y_Signal)]
+    
+        # Plot curves and add annotations
+        plt.plot(x, y_Noise, label="Noise") 
+        plt.plot(x, y_Signal, label="Signal") 
+        plt.axvline((d_prime/2)+ c,label = 'threshold', color='k', linestyle='--') # plot threshold line C
+        plt.plot ([Noisestop_x, Signaltop_x ],[ Noisetop_y, Signaltop_y], label = "d'", linestyle = '-') 
+        plt.ylim(ymin=0)
+        plt.xlabel('Decision Variable')
+        plt.ylabel('Probability')
+        plt.title('Signal Detection Theory')
+        plt.legend()
+        plt.show()
+
+        
+
+sd = SignalDetection(50, 30, 20, 30)
+sd.plot_roc()
+sd.plot_sdt(sd.d_prime())
+
 
 
 # In[ ]:
