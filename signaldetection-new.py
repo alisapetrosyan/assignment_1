@@ -59,10 +59,12 @@ class SignalDetection:
     def criterion(self):
         return (-0.5) * ((norm.ppf(self.H()) + norm.ppf(self.FA())))
     
+#creating new methods for addition and multiplication
+    def __add__(self, other):
+        return SignalDetection(self.hits + other.hits, self.misses + other.misses, self.falseAlarms + other.falseAlarms, self.correctRejections + other.correctRejections)
 
-        
-if __name__ == '__main__':
-    unittest.main(argv= ['first-arg-is-ignored'], exit = False)
+    def __mul__ (self, other1):
+        return SignalDetection(self.hits * other1, self.misses * other1, self.falseAlarms * other1, self.correctRejections * other1)
 
 
 # In[ ]:
