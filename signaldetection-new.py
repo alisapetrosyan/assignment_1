@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[43]:
+# In[44]:
 
 
 #trying to make the class uncorruptible by implementing private methods 
@@ -15,29 +15,6 @@ import matplotlib.pyplot as plt
 import matplotlib.pyplot as plt
 from sklearn import datasets, metrics, model_selection, svm
 
-
-class SignalDetection:
-    def __init__(self, hits, misses, falseAlarms, correctRejections):
-        if hits < 0 or type(hits) != int: 
-            raise ValueError ("Hits cannot be negative or non integer.")
-        if misses < 0 or type(misses) != int:
-            raise ValueError ("Misses cannot be negative or non integer.")   
-        if falseAlarms < 0 or type(falseAlarms) != int:
-            raise ValueError ("False Alarms cannot be negative or non integer.")
-        if correctRejections < 0 or type(correctRejections) != int:
-            raise ValueError ("Correct Rejections cannot be negative or non integer.")
-        self.__hits = hits
-        self.__misses = misses
-        self.__falseAlarms = falseAlarms
-        self.__correctRejections = correctRejections
-        self.__H = (hits / (hits + misses))
-        self.__FA = (falseAlarms / (falseAlarms + correctRejections))
-
-    def d_prime(self):
-          return (norm.ppf(self.__H)) - (norm.ppf(self.__FA))
-    
-    def criterion(self):
-        return (-0.5) * ((norm.ppf(self.__H) + norm.ppf(self.__FA)))
     
 # altered code to make it non corruptible
 class SignalDetection:
