@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[40]:
+# In[42]:
 
 
 #trying to make the class uncorruptible by implementing private methods 
@@ -66,7 +66,8 @@ class SignalDetection:
     def __mul__ (self, other1):
         return SignalDetection(self.hits * other1, self.misses * other1, self.falseAlarms * other1, self.correctRejections * other1)
     
-    
+
+   
 #Adding roc plot 
     def plot_roc(self):
         x = []
@@ -118,6 +119,16 @@ sd = SignalDetection(50, 30, 20, 30)
 sd.plot_roc()
 sd.plot_sdt(sd.d_prime())
 
+class TestSignalDetection(unittest.TestCase):
+    def test_corrption(self):
+        sd = SignalDetection(15, 10, 15, 5)
+        expected = sd.criterion()
+        sd.hits = 100
+        obtained2 = sd.criterion()
+        self.assertNotEqual(expected, obtained2)
+
+if __name__ == '__main__':
+    unittest.main(argv= ['first-arg-is-ignored'], exit = False)
 
 
 # In[ ]:
