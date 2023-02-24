@@ -63,9 +63,7 @@ class SignalDetection:
     def __add__(self, other):
         return SignalDetection(self.hits + other.hits, self.misses + other.misses, self.falseAlarms + other.falseAlarms, self.correctRejections + other.correctRejections)
 
-    def __mul__ (self, other1):
-        return SignalDetection(self.hits * other1, self.misses * other1, self.falseAlarms * other1, self.correctRejections * other1)
-    
+
 
    
 #Adding roc plot 
